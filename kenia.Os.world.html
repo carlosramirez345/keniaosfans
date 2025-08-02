@@ -1,0 +1,504 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>KENIA OS | Sitio Oficial</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    @font-face {
+      font-family: 'Neon';
+      src: url('https://fonts.googleapis.com/css2?family=Tourney:wght@600&display=swap');
+    }
+    body {
+      font-family: 'Montserrat', sans-serif;
+      background: #111;
+      color: #fff;
+    }
+    .polaroid {
+      background: white;
+      padding: 15px 15px 40px;
+      transform: rotate(-2deg);
+      box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+      transition: all 0.3s ease;
+    }
+    .polaroid:hover {
+      transform: rotate(0deg) scale(1.05);
+    }
+    .menu-item {
+      position: relative;
+    }
+    .menu-item:after {
+      content: '';
+      position: absolute;
+      width: 0;
+      height: 2px;
+      bottom: -5px;
+      left: 0;
+      background-color: #ebb9eb;
+      visibility: hidden;
+      transition: all 0.3s ease-in-out;
+    }
+    .menu-item:hover:after {
+      visibility: visible;
+      width: 100%;
+    }
+    .neon-text {
+      text-shadow: 0 0 10px #00c3ff, 0 0 20px #00a6ff, 0 0 30px #00a6ff;
+    }
+    .song-item:hover {
+      background: rgba(255, 0, 255, 0.1);
+    }
+    .video-gallery {
+  display: flex;
+  gap: 16px;
+  overflow-x: auto;
+  padding: 10px;
+}
+.video-thumb {
+  width: 200px;
+  cursor: pointer;
+  border-radius: 8px;
+  transition: transform 0.2s;
+}
+.video-thumb:hover {
+  transform: scale(1.05);
+  }
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1000;
+  left: 0; top: 0;
+  width: 100vw; height: 100vh;
+  background: rgba(0,0,0,0.8);
+  justify-content: center;
+  align-items: center;
+}
+.modal video {
+  width: 80vw;
+  max-width: 900px;
+  border-radius: 12px;
+}
+.close {
+  position: absolute;
+  top: 30px; right: 40px;
+  color: #fff;
+  font-size: 40px;
+  cursor: pointer;
+  z-index: 1001;
+}
+.blur-bg {
+  filter: blur(8px);
+  transition: filter 0.3s;
+}
+.video-gallery {
+  display: flex;
+  gap: 16px;
+  overflow-x: auto;
+  padding: 10px;
+  justify-content: center; /* Centra los videos horizontalmente */
+}
+input[type="range"].accent-pink-500::-webkit-slider-thumb {
+  background: #ec4899;
+}
+input[type="range"].accent-pink-500::-moz-range-thumb {
+  background: #ec4899;
+}
+input[type="range"].accent-pink-500::-ms-thumb {
+  background: #ec4899;
+}
+input[type="range"].accent-pink-500 {
+  accent-color: #ec4899;
+}
+  </style>
+</head>
+<body class="bg-black text-white">
+
+  <!-- Floating Social Media -->
+  <div class="fixed right-0 top-1/2 transform -translate-y-1/2 z-50 hidden md:block">
+    <div class="flex flex-col space-y-4 p-2">
+      <a href="https://www.instagram.com/keniaos?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" class="text-pink-500 hover:text-white"><i class="fab fa-instagram text-2xl"></i></a>
+      <a href="https://x.com/keniaos" class="text-blue-400 hover:text-white"><i class="fab fa-twitter text-2xl"></i></a>
+      <a href="https://www.youtube.com/channel/UCSEY-xdBrV-J1zpLg9-mr6w" class="text-red-500 hover:text-white"><i class="fab fa-youtube text-2xl"></i></a>
+      <a href="https://open.spotify.com/artist/31VFEohvhOUKrtAONEBhMG?si=r7KisR20QTaj5hmGZNq0ig" class="text-green-500 hover:text-white"><i class="fab fa-spotify text-2xl"></i></a>
+    </div>
+  </div>
+
+  <!-- Hero Section -->
+  <header class="relative h-screen flex items-center justify-center overflow-hidden">
+    <div class="absolute inset-0">
+      <img src="img/13234832.jpg" alt="Kenia OS en concierto con vestuario futurista azul y rosa neon, luces láser en fondo oscuro" class="w-full h-full object-cover opacity-70">
+    </div>
+    <div class="relative z-10 text-center px-4">
+      <h1 class="text-5xl md:text-8xl font-bold mb-4 neon-text">KENIA OS</h1>
+      <p class="text-xl md:text-2xl mb-8">Sitio Oficial</p>
+      
+      <!-- Main Navigation -->
+      <nav class="flex flex-col md:flex-row justify-center space-y-4 md:space-y-0 md:space-x-10 text-lg">
+        <a href="music.html" class="menu-item">MUSIC</a>
+        <a href="videos" class="menu-item">VIDEOS</a>
+        <a href="gallery" class="menu-item">GALLERY</a>
+        <a href="tour" class="menu-item">TOUR</a>
+        <a href="shop" class="menu-item">SHOP</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Music Section -->
+  <section id="music" class="py-20 px-4">
+    <div class="container mx-auto">
+      <h2 class="text-4xl font-bold mb-12 text-center"><span class="border-b-4 border-pink-500 pb-2">MUSIC</span></h2>
+      
+      <!-- Album Cover + Player -->
+<div class="flex flex-col lg:flex-row items-center mb-16">
+  <!-- Imagen del álbum -->
+  <div class="lg:w-1/2 mb-10 lg:mb-0 flex justify-center">
+    <img src="img/k23.jpg" alt="Portada del álbum Malas Decisiones de Kenia OS con diseño futurista en tonos morados y rosas" class="w-full max-w-md rounded-lg shadow-2xl">
+  </div>
+  <!-- Reproductor y lista de canciones -->
+  <div class="lg:w-1/2 w-full">
+    <h3 class="text-3xl font-bold mb-6">K23</h3>
+    <p class="text-gray-300 mb-8">Álbum lanzado en 2023 con 11 canciones</p>
+
+          
+          <!-- Mini Player -->
+<div class="bg-gray-900 p-6 rounded-lg mb-8">
+      <div class="flex items-center space-x-4 mb-4">
+        <button id="play-pause-btn" class="w-12 h-12 bg-pink-500 rounded-full flex items-center justify-center">
+          <i id="play-pause-icon" class="fas fa-play text-white"></i>
+        </button>
+        <div>
+          <h4 class="font-bold">Escuchando ahora</h4>
+          <p id="current-song-title" class="text-sm text-gray-400">Año sabatico</p>
+        </div>
+      </div>
+      <audio id="audio-player" src="aud/[SPOTDOWNLOADER.COM] Año Sabático.mp3"></audio>
+<div class="flex items-center space-x-4">
+  <span id="current-time" class="text-xs text-gray-400 w-10 text-right">0:00</span>
+  <input id="progress-bar" type="range" min="0" value="0" step="1" class="flex-grow accent-pink-500 h-1 rounded-full" />
+  <span id="duration" class="text-xs text-gray-400 w-10 text-left">0:00</span>
+</div>
+    </div>
+
+
+          
+          <!-- Song List -->
+  <div class="space-y-2 max-h-96 overflow-y-auto">
+      <div class="song-item flex items-center p-3 rounded-lg cursor-pointer" data-title="Mia Mia" data-src="aud/[SPOTDOWNLOADER.COM] Mía Mía (1).mp3" data-duration="3:42">
+        <span class="text-gray-400 w-8">1</span>
+        <span class="flex-grow">Mia Mia</span>
+        <span class="text-gray-400">2:37</span>
+      </div>
+      <div class="song-item flex items-center p-3 rounded-lg cursor-pointer" data-title="Toy Toy" data-src="aud\[SPOTDOWNLOADER.COM] Toy Toy.mp3" data-duration="3:15">
+        <span class="text-gray-400 w-8">2</span>
+        <span class="flex-grow">Toy Toy</span>
+        <span class="text-gray-400">2:48</span>
+      </div>
+      <div class="song-item flex items-center p-3 rounded-lg cursor-pointer" data-title="Flores" data-src="aud\[SPOTDOWNLOADER.COM] Flores.mp3" data-duration="2:58">
+        <span class="text-gray-400 w-8">3</span>
+        <span class="flex-grow">Flores</span>
+        <span class="text-gray-400">2:20</span>
+      </div>
+      <div class="song-item flex items-center p-3 rounded-lg cursor-pointer" data-title="Buscandonos" data-src="aud\[SPOTDOWNLOADER.COM] Buscándonos.mp3" data-duration="2:58">
+        <span class="text-gray-400 w-8">4</span>
+        <span class="flex-grow">Buscandonos</span>
+        <span class="text-gray-400">2:20</span>
+      </div>
+      <div class="song-item flex items-center p-3 rounded-lg cursor-pointer" data-title="Placebo" data-src="aud\[SPOTDOWNLOADER.COM] Placebo.mp3" data-duration="2:58">
+        <span class="text-gray-400 w-8">5</span>
+        <span class="flex-grow">Placebo</span>
+        <span class="text-gray-400">2:20</span>
+      </div>
+      <div class="song-item flex items-center p-3 rounded-lg cursor-pointer" data-title="SI por Mi Fuera" data-src="aud\[SPOTDOWNLOADER.COM] Si por Mí Fuera.mp3" data-duration="2:58">
+        <span class="text-gray-400 w-8">6</span>
+        <span class="flex-grow">Si por Mi Fuera</span>
+        <span class="text-gray-400">2:20</span>
+      </div>
+     <script>
+// filepath: c:\Users\Lenovo\Downloads\kenia.Os.world.html
+const audioPlayer = document.getElementById('audio-player');
+const progressBar = document.getElementById('progress-bar');
+const currentTimeEl = document.getElementById('current-time');
+const durationEl = document.getElementById('duration');
+const songItems = document.querySelectorAll('.song-item');
+const currentSongTitle = document.getElementById('current-song-title');
+const playPauseBtn = document.getElementById('play-pause-btn');
+const playPauseIcon = document.getElementById('play-pause-icon');
+
+// Actualiza la barra y los minutos
+audioPlayer.addEventListener('loadedmetadata', () => {
+  progressBar.max = Math.floor(audioPlayer.duration);
+  durationEl.textContent = formatTime(audioPlayer.duration);
+});
+audioPlayer.addEventListener('timeupdate', () => {
+  progressBar.value = Math.floor(audioPlayer.currentTime);
+  currentTimeEl.textContent = formatTime(audioPlayer.currentTime);
+});
+
+// Permite mover la barra para adelantar/retroceder
+progressBar.addEventListener('input', () => {
+  audioPlayer.currentTime = progressBar.value;
+});
+// Cambiar canción al hacer click en la lista
+songItems.forEach(item => {
+  item.addEventListener('click', function() {
+    // Quitar clase activa de todas
+    songItems.forEach(i => i.classList.remove('bg-gray-800'));
+    // Agregar clase activa a la seleccionada
+    this.classList.add('bg-gray-800');
+    // Cambiar canción y reproducir
+    audioPlayer.src = this.getAttribute('data-src');
+    audioPlayer.play();
+    currentSongTitle.textContent = this.getAttribute('data-title');
+    playPauseIcon.classList.remove('fa-play');
+    playPauseIcon.classList.add('fa-pause');
+  });
+});
+// Botón play/pause
+playPauseBtn.addEventListener('click', function() {
+  if (audioPlayer.paused) {
+    audioPlayer.play();
+    playPauseIcon.classList.remove('fa-play');
+    playPauseIcon.classList.add('fa-pause');
+  } else {
+    audioPlayer.pause();
+    playPauseIcon.classList.remove('fa-pause');
+    playPauseIcon.classList.add('fa-play');
+  }
+});
+
+// Cambiar icono cuando termina la canción
+audioPlayer.addEventListener('ended', function() {
+  playPauseIcon.classList.remove('fa-pause');
+  playPauseIcon.classList.add('fa-play');
+});
+
+// Formatea segundos a mm:ss
+function formatTime(seconds) {
+  const min = Math.floor(seconds / 60);
+  const sec = Math.floor(seconds % 60);
+  return `${min}:${sec < 10 ? '0' : ''}${sec}`;
+}
+</script>
+      
+<section>    
+<!-- Other Releases -->
+      <h3 class="text-2xl font-bold mb-6 mt-16">OTROS LANZAMIENTOS</h3>
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+        <div>
+            <a href="https://open.spotify.com/album/0UaPZ3OfJgoTB5RKpZ0UY0?si=IEbJ8Z26TTC0suFa_FgwyA" target="_blank">
+          <img src="img\cambiosdeluna.jpg" alt="Portada del EP Cambios de Luna" class="w-full rounded-lg mb-2 hover:opacity-80 transition">
+          <p class="text-center">Cambios de Luna</p>
+          </a>
+        </div>
+        <div>
+            <a href="https://open.spotify.com/album/7iBIAxWWW0WhKnFnhHBfNh?si=1zR6FviQTquPHQ5SFMmKuA" target="_blank">
+          <img src="img\cpme.jpg" alt="Portada del sencillo Sola" class="w-full rounded-lg mb-2 hover:opacity-80 transition">
+          <p class="text-center">Canciones Pa Mi Ex Vol.1</p>
+          </a>
+        </div>
+        <div>
+            <a href="https://open.spotify.com/album/1a08d11kkHSjdTLCUnYXad?si=ifQ7gZHXSc-lT51AStta4Q" target="_blank">
+          <img src="img\pinkaura.jpg" alt="Portada del sencillo en colaboración Dímelo" class="w-full rounded-lg mb-2 hover:opacity-80 transition">
+          <p class="text-center">Pink Aura</p>
+          </a>
+        </div>
+        <div>
+            <a href="https://open.spotify.com/album/4arUFFy6S0jTlttowTu44X?si=Fftsfh6VTWmlYB7ueElk0w" target="_blank">
+          <img src="img\kos en vivo.jpg" alt="Portada del sencillo Te Extraño" class="w-full rounded-lg mb-2 hover:opacity-80 transition">
+          <p class="text-center">En Vivo (Acústico)</p>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Videos Section -->
+  <section id="videos" class="py-20 bg-gray-900 px-4">
+    <div class="container mx-auto">
+      <h2 class="text-4xl font-bold mb-12 text-center"><span class="border-b-4 border-pink-500 pb-2">VIDEOS</span></h2>
+      
+      <!-- Featured Video -->
+      <div class="aspect-w-16 aspect-h-9 bg-black mb-4 h-[100px] sm:h-[100px] lg:h-[400px]">
+          <iframe width="100%" height="100%" src="vid\ojoxojo.mp4" 
+                  frameborder="0" allow="accelerometer; autoplay; clipboard-write; 
+                  encrypted-media; gyroscope; picture-in-picture" allowfullscreen
+                  class="w-full h-full">
+          </iframe>
+          <h4 class="font-bold">OJO X OJO - Video Oficial</h4>
+          <p class="text-gray-400 text-sm">47M visualizaciones</p>
+        </div>
+      
+      <!-- Video Grid -->
+       <br>
+       <br>
+      <div class="video-gallery">
+  <video src="vid\VIP.mp4" class="video-thumb" controls></video>
+  <video src="vid\jackpot.mp4" class="video-thumb" controls></video>
+  <video src="vid\jackpot.mp4" class="video-thumb" controls></video>
+</div>
+<div id="video-modal" class="modal">
+    <span class="close">&times;</span>
+    <video id="modal-video" controls autoplay></video>
+  </div>
+<script>
+    const thumbs = document.querySelectorAll('.video-thumb');
+    const modal = document.getElementById('video-modal');
+    const modalVideo = document.getElementById('modal-video');
+    const closeBtn = document.querySelector('.close');
+    const mainContent = document.getElementById('main-content');
+
+    thumbs.forEach(thumb => {
+      thumb.addEventListener('click', () => {
+        modal.style.display = 'flex';
+        modalVideo.src = thumb.src || thumb.currentSrc;
+        modalVideo.play();
+        mainContent.classList.add('blur-bg');
+      });
+    });
+
+    closeBtn.onclick = function() {
+      modal.style.display = 'none';
+      modalVideo.pause();
+      modalVideo.src = '';
+      mainContent.classList.remove('blur-bg');
+    };
+
+    modal.onclick = function(event) {
+      // Solo cierra si se da click fuera del video
+      if (event.target === modal) {
+        modal.style.display = 'none';
+        modalVideo.pause();
+        modalVideo.src = '';
+        mainContent.classList.remove('blur-bg');
+      }
+    };
+  </script>
+  <div class="text-center mt-10">
+  <a href="https://www.youtube.com/channel/UCSEY-xdBrV-J1zpLg9-mr6w" target="_blank">
+    <button class="border-2 border-pink-500 text-pink-500 px-8 py-3 rounded-full font-bold hover:bg-pink-500 hover:text-black transition uppercase">
+      Ver todos los videos
+    </button>
+  </a>
+</div>
+    </div>
+  </section>
+
+  <!-- Gallery Section -->
+  <section id="gallery" class="py-20 px-4">
+    <div class="container mx-auto">
+      <h2 class="text-4xl font-bold mb-12 text-center"><span class="border-b-4 border-pink-500 pb-2">GALLERY</span></h2>
+      
+      <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
+        <!-- Polaroid Style Images -->
+        <div class="polaroid">
+          <img src="img\imgi_14_miami-beach-florida-kenia-os-visits-at-siriusxm-studios-on-october-14-2024-in-miami-beach.jpg" alt="Kenia OS en sesión de fotos estilo retro con filtro polaroid, usando gafas de sol rosadas" class="w-full h-64 object-cover">
+          <p class="text-center mt-2 text-black font-medium">MiamI</p>
+        </div>
+        <div class="polaroid">
+          <img src="img/imgi_81_mexico-city-mexico-kenia-os-poses-for-a-photo-during-the-day-of-the-dead-gala-red-carpet-at.jpg" alt="Kenia OS en backstage maquillándose con espejo iluminado, reflejo en primer plano" class="w-full h-64 object-cover">
+          <p class="text-center mt-2 text-black font-medium">Vouge</p>
+        </div>
+        <div class="polaroid">
+          <img src="img\imgi_77_monterrey-mexico-mexican-interent-celebrity-and-singer-kenia-os-performs-during-a-concert-at.jpg" alt="Primer plano de Kenia OS cantando en concierto con micrófono dorado, luces de colores" class="w-full h-64 object-cover">
+          <p class="text-center mt-2 text-black font-medium">Monterrey</p>
+        </div>
+        <div class="polaroid">
+          <img src="img\imgi_12_los-angeles-california-kenia-os-performs-at-peacock-theater-on-november-23-2024-in-los-angeles.jpg" alt="Momento casual de Kenia OS riendo con el equipo en grabación de video musical" class="w-full h-64 object-cover">
+          <p class="text-center mt-2 text-black font-medium">Los Angeles</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Tour Section -->
+  <section id="tour" class="py-20 bg-gray-900 px-4">
+    <div class="container mx-auto">
+      <h2 class="text-4xl font-bold mb-12 text-center"><span class="border-b-4 border-pink-500 pb-2">TOUR</span></h2>
+      
+      <!-- Timeline -->
+      <div class="max-w-2xl mx-auto">
+        <div class="border-l-2 border-pink-500 pl-8 space-y-8">
+          <!-- Event 1 -->
+          <div class="relative pb-8">
+            <div class="absolute w-4 h-4 bg-pink-500 rounded-full -left-2 top-1"></div>
+            <h3 class="text-xl font-bold">SIN FECHAS</h3>
+            <p class="text-gray-400"></p>
+            <p class="text-gray-400"></p>
+            <button class="mt-2 text-pink-500 hover:text-pink-300 font-medium">PROXIMAMENTE</button>
+          </div>
+          
+          <!-- Event 2 -->
+          
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Newsletter -->
+  <section class="py-16 bg-black px-4">
+    <div class="container mx-auto max-w-2xl text-center">
+      <h3 class="text-3xl font-bold mb-6">ÚNETE A KENIA WORLD</h3>
+      <p class="text-gray-400 mb-8">Recibe noticias exclusivas y actualizaciones directamente en tu correo</p>
+      
+      <form class="flex flex-col sm:flex-row gap-4">
+        <input type="email" placeholder="Tu email" class="bg-gray-800 text-white px-4 py-3 rounded flex-grow">
+        <button class="bg-pink-500 hover:bg-pink-600 text-white px-6 py-3 rounded font-bold uppercase">Suscribirse</button>
+      </form>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="py-10 bg-gray-950 px-4">
+    <div class="container mx-auto">
+      <div class="flex flex-col md:flex-row justify-between items-center">
+        <div class="mb-6 md:mb-0">
+          <h4 class="text-2xl font-bold mb-2">KENIA WORLD</h4>
+          <p class="text-gray-400">Sitio Oficial</p>
+        </div>
+        
+        <div class="flex space-x-6 mb-6 md:mb-0">
+          <a href="https://www.instagram.com/keniaos?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" class="text-gray-400 hover:text-pink-500"><i class="fab fa-instagram text-2xl"></i></a>
+          <a href="https://x.com/keniaos" class="text-gray-400 hover:text-blue-400"><i class="fab fa-twitter text-2xl"></i></a>
+          <a href="https://www.youtube.com/channel/UCSEY-xdBrV-J1zpLg9-mr6w" class="text-gray-400 hover:text-red-500"><i class="fab fa-youtube text-2xl"></i></a>
+          <a href="https://open.spotify.com/artist/31VFEohvhOUKrtAONEBhMG?si=r7KisR20QTaj5hmGZNq0ig" class="text-gray-400 hover:text-green-500"><i class="fab fa-spotify text-2xl"></i></a>
+          <a href="https://www.tiktok.com/@keniaos" class="text-gray-400 hover:text-pink-400"><i class="fab fa-tiktok text-2xl"></i></a>
+        </div>
+        
+        <div class="text-gray-400 text-sm">
+          <p>© 2024 KENIA WORLD. Todos los derechos reservados.</p>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Mobile menu toggle functionality would go here
+    document.addEventListener('DOMContentLoaded', function() {
+      // Smooth scrolling for anchor links
+      document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+          e.preventDefault();
+          
+          document.querySelector(this.getAttribute('href')).scrollIntoView({
+            behavior: 'smooth'
+          });
+        });
+      });
+      
+      // Audio player functionality would go here
+      const songItems = document.querySelectorAll('.song-item');
+      songItems.forEach(item => {
+        item.addEventListener('click', function() {
+          // Remove active class from all items
+          songItems.forEach(i => i.classList.remove('bg-gray-800'));
+          // Add active class to clicked item
+          this.classList.add('bg-gray-800');
+        });
+      });
+    });
+  </script>
+</body>
+</html>
+
